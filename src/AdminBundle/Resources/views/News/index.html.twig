@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>News list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Url</th>
+                <th>Active</th>
+                <th>Publishdate</th>
+                <th>Shortcontent</th>
+                <th>Content</th>
+                <th>Created</th>
+                <th>Modified</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for news in news %}
+            <tr>
+                <td><a href="{{ path('admin_news_show', { 'id': news.id }) }}">{{ news.id }}</a></td>
+                <td>{{ news.title }}</td>
+                <td>{{ news.url }}</td>
+                <td>{% if news.active %}Yes{% else %}No{% endif %}</td>
+                <td>{% if news.publishDate %}{{ news.publishDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ news.shortContent }}</td>
+                <td>{{ news.content }}</td>
+                <td>{% if news.created %}{{ news.created|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if news.modified %}{{ news.modified|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_news_show', { 'id': news.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_news_edit', { 'id': news.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_news_new') }}">Create a new news</a>
+        </li>
+    </ul>
+{% endblock %}
