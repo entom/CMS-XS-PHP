@@ -5,6 +5,7 @@ namespace AdminBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class NewsType extends AbstractType
 {
@@ -17,7 +18,7 @@ class NewsType extends AbstractType
             ->add('title')
 //            ->add('url')
             ->add('active')
-            ->add('publishDate')
+            ->add('publishDate', TextType::class)
             ->add('shortContent')
             ->add('content')
 //            ->add('created')
